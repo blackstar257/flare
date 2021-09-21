@@ -1,4 +1,3 @@
-use serde_json::json;
 use worker::*;
 
 mod utils;
@@ -29,29 +28,13 @@ pub async fn main(req: Request, env: Env) -> Result<Response> {
     // functionality and a `RouteContext` which you can use to  and get route parameters and`
     // Enviornment bindings like KV Stores, Durable Objects, Secrets, and Variables.
     router
-        .post_async("/form/:field", |mut req, ctx| async move {
-            if let Some(name) = ctx.param("field") {
-                let form = req.form_data().await?;
-                match form.get(name) {
-                    Some(FormEntry::Field(value)) => {
-                        return Response::from_json(&json!({ name: value }))
-                    }
-                    Some(FormEntry::File(_)) => {
-                        return Response::error("`field` param in form shouldn't be a File", 422);
-                    }
-                    None => return Response::error("Bad Request", 400),
-                }
-            }
-
-            Response::error("Bad Request", 400)
-        })
-        .get("/worker-version", |mut req, ctx| {
+        .get("/", |req, _| {
             let f = req.headers().get("CF-Connecting-IP");
             let f = match f {
                 Ok(ip) => ip,
                 Err(error) => panic!("Problem opening the file: {:?}", error),
             };
-            Response::ok(f.to_string())
+            Response::ok(f.unwrap_or_default())
         })
         .run(req, env)
         .await
