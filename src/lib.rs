@@ -19,8 +19,5 @@ pub async fn handle_get(req: Request, _ctx: RouteContext<()>) -> worker::Result<
         Err(_) => None,
     };
     let message = ip.unwrap_or("unknown".to_owned()).to_string();
-    Response::from_json(&GenericResponse {
-        status: 200,
-        message: message,
-    })
+    Response::ok(message)
 }

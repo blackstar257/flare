@@ -2,3 +2,7 @@
 **/*.rs.bk
 wasm-pack.log
 build/
+node_modules
+
+# Ignore compiled files
+*.com *.class *.dll *.exe *.o
