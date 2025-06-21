@@ -1,7 +1,8 @@
 [package]
-name = "cf-worker-rust-debug"
+name = "flare"
 version = "0.1.0"
 edition = "2021"
+authors = ["blackstar257 <4362234+blackstar257@users.noreply.github.com>"]
 
 [package.metadata.release]
 release = false
@@ -14,8 +15,7 @@ wasm-opt = false
 crate-type = ["cdylib"]
 
 [dependencies]
-serde = "1.0.188"
-worker = "0.0.21"
-
-[dev-dependencies]
-tokio = { version = "1", features = ["full"] }
+worker = { version = "0.6.0", features = ['http'] }
+worker-macros = { version = "0.6.0", features = ['http'] }
+console_error_panic_hook = { version = "0.1.7" }
+http = "1.3"

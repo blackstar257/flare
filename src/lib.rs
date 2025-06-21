@@ -1,15 +1,17 @@
-use serde::{Deserialize, Serialize};
 use worker::*;
 
-#[derive(Debug, Deserialize, Serialize)]
-struct GenericResponse {
-    status: u16,
-    message: String,
-}
-
 #[event(fetch)]
-async fn main(req: Request, env: Env, _ctx: Context) -> Result<Response> {
-    Router::new().get_async("/", handle_get).run(req, env).await
+async fn fetch(
+    req: Request,
+    env: Env,
+    _ctx: Context,
+) -> Result<Response> {
+    console_error_panic_hook::set_once();
+    
+    Router::new()
+        .get_async("/", handle_get)
+        .run(req, env)
+        .await
 }
 
 pub async fn handle_get(req: Request, _ctx: RouteContext<()>) -> worker::Result<Response> {
