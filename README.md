@@ -1,4 +1,4 @@
-# Cloudflare Rust Worker - IP Address Service
+# Flare
 
 A Cloudflare Worker written in Rust that demonstrates using the `worker-rs` crate to build serverless functions. This worker returns the visitor's IP address by reading Cloudflare's `CF-Connecting-IP` header.
 
