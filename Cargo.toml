@@ -2,6 +2,12 @@
 name = "flare"
 version = "0.1.0"
 edition = "2021"
+description = "Cloudflare Worker for various debugging and testing purposes"
+license = "MIT"
+repository = "https://github.com/blackstar257/flare"
+documentation = "https://github.com/blackstar257/flare"
+keywords = ["cloudflare", "worker", "debugging", "testing"]
+categories = ["network"]
 authors = ["blackstar257 <4362234+blackstar257@users.noreply.github.com>"]
 
 [package.metadata.release]
